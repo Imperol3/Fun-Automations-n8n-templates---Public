@@ -1,0 +1,414 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Initial setup\n\n**For these, the links to each of your airtable Table and add it to the global variable node.**",
+        "height": 285,
+        "width": 184,
+        "color": 5
+      },
+      "id": "5c181763-7ce9-40e4-9eab-e129ff3a39a7",
+      "name": "Sticky Note19",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "organicResults",
+        "options": {}
+      },
+      "id": "010a5075-9078-416f-b7d0-acda6dbbb952",
+      "name": "organicResults",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        600,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json.keyword }}"
+            },
+            {
+              "name": "api_key",
+              "value": "={{ $json.api_key }}"
+            },
+            {
+              "name": "num",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff363a6b-c963-4962-ba3b-454d7e28972b",
+      "name": "GET SERP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b3e662aa-7ace-45ca-815a-0ad1d65ef7a0",
+              "name": "organicResults",
+              "value": "={{ $json.organic_results }}",
+              "type": "array"
+            },
+            {
+              "id": "ac655bf2-181f-4117-a7d6-aa4ec2738bd9",
+              "name": "peopleAlsoAsk",
+              "value": "={{ $json.related_questions }}",
+              "type": "array"
+            },
+            {
+              "id": "9e045f00-006e-4b8b-863d-cb25d682b69d",
+              "name": "searchQuery",
+              "value": "={{ $json.search_information.query_displayed }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "76e6f502-c01a-47f4-a36a-0a498cffadf2",
+      "name": "set urls and serp",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Keyword Tracker SerpAPI🟢🟢🟢",
+        "height": 343,
+        "width": 1397,
+        "color": 4
+      },
+      "id": "6d88e355-bb6b-485b-b140-7228eb0f5486",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "76427f2f-819f-4ca3-be0e-ddd8496a90b8",
+              "leftValue": "={{ $json.link?.extractDomain() }}",
+              "rightValue": "={{ $('set site + keyword + API').item.json.domain.extractDomain() }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        760,
+        120
+      ],
+      "id": "acc4b680-c8f2-4c41-a5d3-d33f03e23cd8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1970aa68-ae5b-49f5-bba3-28480b36b500",
+              "name": "position",
+              "value": "={{ $json.position }}",
+              "type": "number"
+            },
+            {
+              "id": "55cfa851-5295-4857-9f89-6195f6a3b066",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "8884c3c5-de52-485e-9a3d-661d2145a448",
+              "name": "link",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "5894c742-70ca-49eb-809c-3bea103e38d1",
+              "name": "snippet",
+              "value": "={{ $json.snippet }}",
+              "type": "string"
+            },
+            {
+              "id": "9f3cd391-02c6-410c-a1b7-7167100f5bea",
+              "name": "sitelinks",
+              "value": "={{ $json.sitelinks }}",
+              "type": "object"
+            },
+            {
+              "id": "69b7d574-4e67-4925-aea9-635288c8f59d",
+              "name": "source",
+              "value": "={{ $json.source }}",
+              "type": "string"
+            },
+            {
+              "id": "78e6036e-7804-4bb6-a1a3-e155664ebd00",
+              "name": "snippet_highlighted_words",
+              "value": "={{ $json.snippet_highlighted_words }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        40
+      ],
+      "id": "2d81b683-1029-45c9-a493-32035bb288a9",
+      "name": "set keyword by rank"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        960,
+        200
+      ],
+      "id": "ddbfd04a-92bc-4b05-8faa-cfe98a4e0456",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "path": "2c6bde55-010c-48ea-a9fd-e8bdceffc2bc",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "d630dd26-d6c1-4d40-b1de-ec3f4ec78d71",
+      "name": "trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        120
+      ],
+      "webhookId": "2c6bde55-010c-48ea-a9fd-e8bdceffc2bc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a729857-f37f-422d-b622-73b626900eed",
+              "name": "domain",
+              "value": "={the page url that you are tracking}",
+              "type": "string"
+            },
+            {
+              "id": "6bb53928-2d3c-4edb-9bf7-83cbb418f6dd",
+              "name": "keyword",
+              "value": "={ the keyword that we are tracking }",
+              "type": "string"
+            },
+            {
+              "id": "086cf93c-c836-479d-ab7b-8be91c724389",
+              "name": "api_key",
+              "value": "=(SERPAPI KEY)",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        120
+      ],
+      "id": "1696fe22-0af9-41b3-be61-e79b457961e2",
+      "name": "set site + keyword + API"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410",
+          "mode": "list",
+          "cachedResultName": "Scan Website for all keywords, intent etc Template",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 732537994,
+          "mode": "list",
+          "cachedResultName": "Keywords we are ranking for",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit#gid=732537994"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1120,
+        40
+      ],
+      "id": "3a39c9d3-80e5-4487-a7df-bdf3e31f6d35",
+      "name": "upload rank",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZAI2a6Qt80kX5a9s",
+          "name": "Google Sheets account✅ "
+        }
+      }
+    }
+  ],
+  "connections": {
+    "organicResults": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET SERP": {
+      "main": [
+        [
+          {
+            "node": "set urls and serp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set urls and serp": {
+      "main": [
+        [
+          {
+            "node": "organicResults",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "set keyword by rank",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set keyword by rank": {
+      "main": [
+        [
+          {
+            "node": "upload rank",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "trigger": {
+      "main": [
+        [
+          {
+            "node": "set site + keyword + API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set site + keyword + API": {
+      "main": [
+        [
+          {
+            "node": "GET SERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {
+    "trigger": [
+      {
+        "url": "https://www.eweek.com/artificial-intelligence/business-automation-software/",
+        "keyword": "business automations"
+      }
+    ]
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db80165df40cb07c0377167c050b3f9ab0b0fb04f0e8cae0dc53f5a8527103ca"
+  }
+}
