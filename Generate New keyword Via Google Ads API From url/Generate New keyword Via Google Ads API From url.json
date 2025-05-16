@@ -1,0 +1,366 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "content": "**Generate New keywords with the Google ads API**",
+        "height": 251,
+        "width": 395,
+        "color": 4
+      },
+      "id": "09156647-4f38-4e00-a718-eb4245d534e6",
+      "name": "Sticky Note26",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        480,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Pass Keywords\n",
+        "height": 249,
+        "width": 370,
+        "color": 4
+      },
+      "id": "a97fbcdf-4a23-4936-9402-14c849e55998",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        140,
+        60
+      ],
+      "id": "d511abc7-e35e-454a-b9f3-e73b0013dd22",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        900,
+        60
+      ],
+      "id": "9815c546-4833-436f-a23c-632bb46f8965",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5e069772-ef86-453b-8bc2-7173eaf84fe8",
+              "name": "keyword",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "bbd975fa-bd98-4d30-93b2-b08e5f322f1e",
+              "name": "competition",
+              "value": "={{ $json.keywordIdeaMetrics.competition }}",
+              "type": "string"
+            },
+            {
+              "id": "44c4886a-f080-4b5f-a81b-4b3449c96349",
+              "name": "avgMonthlySearches",
+              "value": "={{ $json.keywordIdeaMetrics.avgMonthlySearches }}",
+              "type": "string"
+            },
+            {
+              "id": "1ed489d2-4bb6-43fc-8f87-d1801ad1116f",
+              "name": "competitionIndex",
+              "value": "={{ $json.keywordIdeaMetrics.competitionIndex }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1060,
+        60
+      ],
+      "id": "e8c0bbf9-b202-4b9f-9f05-399a6faf1c4e",
+      "name": "set keyword fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eaa78bd9-0261-4c4c-9c53-2e76f509e5b5",
+              "name": "url",
+              "value": "={your url}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        60
+      ],
+      "id": "281c6425-bd27-4d54-b550-098884f34ce9",
+      "name": "standardize fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "61e2e0aa-0ca4-4242-a393-c98aee7cd062",
+              "name": "url",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "db502a5e-ca44-4ac1-bbbc-5e0c554dfbcb",
+      "name": "Set Keywords",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        500,
+        60
+      ],
+      "notesInFlow": true,
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410",
+          "mode": "list",
+          "cachedResultName": "Scan Website for all keywords, intent etc Template",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1364667095,
+          "mode": "list",
+          "cachedResultName": "Google ads Keyword Generation URLS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit#gid=1364667095"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "keyword",
+              "displayName": "keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "competition",
+              "displayName": "competition",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "avgMonthlySearches",
+              "displayName": "avgMonthlySearches",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "competitionIndex",
+              "displayName": "competitionIndex",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1240,
+        60
+      ],
+      "id": "8b9f40bf-d234-4adf-8bff-c797f524ff17",
+      "name": "add keywords to Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZAI2a6Qt80kX5a9s",
+          "name": "Google Sheets account✅ "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Store the results to Google sheets",
+        "height": 200,
+        "width": 520
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        900,
+        20
+      ],
+      "typeVersion": 1,
+      "id": "7fa4efdd-0543-499b-a71b-6b2fa7d280c5",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://googleads.googleapis.com/v18/customers/{yourcustomer_id}:generateKeywordIdeas",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleAdsOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "developer-token",
+              "value": "={developer-token}"
+            },
+            {
+              "name": "login-customer-id",
+              "value": "={yourcustomer_id}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"geoTargetConstants\": [\"geoTargetConstants/2840\"],\n  \"includeAdultKeywords\": false,\n  \"pageToken\": \"\",\n  \"pageSize\": 100,\n  \"keywordPlanNetwork\": \"GOOGLE_SEARCH\",\n  \"language\": \"languageConstants/1000\",\n  \"url_seed\": {\n    \"url\": \"{{ $json.url }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "id": "76d29922-af4e-4074-ae89-43677b22aff0",
+      "name": "Generate Keywords from url",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        700,
+        60
+      ],
+      "notesInFlow": false,
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "googleAdsOAuth2Api": {
+          "id": "8e6pmlvbsswPATxV",
+          "name": "Google Ads account 2"
+        }
+      },
+      "notes": "Seed KW with Vol & Comp\n\nhttps://developers.google.com/google-ads/api/docs/concepts/call-structure Google API call structure"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "standardize fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "set keyword fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set keyword fields": {
+      "main": [
+        [
+          {
+            "node": "add keywords to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "standardize fields": {
+      "main": [
+        [
+          {
+            "node": "Set Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Keywords": {
+      "main": [
+        [
+          {
+            "node": "Generate Keywords from url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Keywords from url": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db80165df40cb07c0377167c050b3f9ab0b0fb04f0e8cae0dc53f5a8527103ca"
+  }
+}
