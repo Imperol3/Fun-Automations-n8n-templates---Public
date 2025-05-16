@@ -1,0 +1,1105 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        40
+      ],
+      "id": "0a234a9c-4f14-411f-b810-7756b20a39de",
+      "name": "Auto-fixing Output Parser"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"topics\": [\n    {\n      \"topic\": \"TopicName\",\n      \"relevance\": 0.8,\n      \"subtopics\": [\n        \"Subtopic1\",\n        \"Subtopic2\"\n      ]\n    }\n  ],\n  \"keywords\": [\n    \"keyword1\",\n    \"keyword2\", \n    \"keyword3\"\n  ],\n  \"summary\": \"A short summary of the content in this chunk.\",\n  \"url\" : \"https://domain.com/urlpath\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -1000,
+        280
+      ],
+      "id": "cdfa5cc9-da85-4df2-882a-3314e2db2f47",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        120
+      ],
+      "id": "ef5bf5bc-065c-46b1-b9b6-de3ad74023ab",
+      "name": "Auto-fixing Output Parser1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        300
+      ],
+      "id": "311e85e2-d265-4cdf-9533-914476fe4684",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Xp5T9q3YYxBIw2nd",
+          "name": "Google Gemini(PaLM) Api account✅"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        160
+      ],
+      "id": "a0e37161-a5fc-4d47-8341-1d2b5ccdca2b",
+      "name": "Auto-fixing Output Parser2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        300
+      ],
+      "id": "f5e510a8-73fc-4e9e-836e-a4a390dfb9b5",
+      "name": "Auto-fixing Output Parser3"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        460
+      ],
+      "id": "504ac263-db23-4d64-a660-bdf2ff8de910",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Xp5T9q3YYxBIw2nd",
+          "name": "Google Gemini(PaLM) Api account✅"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        20
+      ],
+      "id": "4c6a252d-9737-439a-b0c4-9481e6992fef",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"pageUrl\": \"https://example.com\",\n  \"analysis\": {\n    \"topics\": [\n      {\n        \"topic\": \"TopicName\",\n        \"relevance\": 0.8,\n        \"subtopics\": [\n          \"Subtopic1\",\n          \"Subtopic2\"\n        ]\n      }\n    ],\n    \"keywords\": [\n      \"keyword1\",\n      \"keyword2\",\n      \"keyword3\"\n    ],\n    \"summary\": \"A comprehensive summary of the page content.\",\n    \"sentiment\": \"neutral\"\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -100,
+        460
+      ],
+      "id": "d4940460-9bf6-434f-b19e-5ca41c1db621",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash-8b-latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        460
+      ],
+      "id": "949dc1b9-3f72-4772-a2bc-fbf3fc3193bc",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Xp5T9q3YYxBIw2nd",
+          "name": "Google Gemini(PaLM) Api account✅"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "analysis_topics",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        40,
+        20
+      ],
+      "id": "a0bdcf6a-0224-430c-a283-48cce82ce787",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Page url: {{ $json.url }}\n\nContent: {{ $json.textContent }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Analyze the following text and extract the main topics, key phrases, and any related subtopics."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -1200,
+        -180
+      ],
+      "id": "a0750308-663c-4245-9a05-8daf45167ed0",
+      "name": "Topics per page",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Page url:\n\n{{ $json.data.toJsonString() }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Below is the aggregated analysis from multiple chunks of a single page. Combine the information to provide a final, unified analysis of the page’s content. Return a JSON object using the schema below:\n\n\n{\n  \"pageUrl\": \"https://example.com/urlpath\",\n  \"analysis\": {\n    \"topics\": [\n      { \"topic\": \"TopicName\", \"relevance\": 0.8, \"subtopics\": [\"Subtopic1\", \"Subtopic2\"] },\n      ...\n    ],\n    \"keywords\": [\"keyword1\", \"keyword2\", \"keyword3\"],\n    \"summary\": \"A comprehensive summary of the page content.\",\n    \"sentiment\": \"neutral\"\n  }\n}\n\n"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -440,
+        20
+      ],
+      "id": "5de9c1ae-f97a-4515-a86b-9d26d14bb6ca",
+      "name": "whole website sentiments",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "analysis_topics",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -180
+      ],
+      "id": "ac756c2a-7c8c-4d35-a025-131d4dfbfaf2",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "pageUrl, keywords",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -180
+      ],
+      "id": "35c7f3a5-badd-4cc8-8b5e-edf6ea1dd8a0",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "content": "## Page analysis",
+        "height": 700,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1240,
+        -240
+      ],
+      "typeVersion": 1,
+      "id": "2cf0dacf-7e83-4325-83a2-dd66e9a8106d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the data from the previous node's 'data' column\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n    // Get HTML content from the 'data' column\n    const htmlContent = item.json.data;\n    \n    if (typeof htmlContent === 'string' && htmlContent.trim()) {\n        // Extract text content from HTML\n        const textContent = htmlContent\n            .replace(/<script\\b[^<]*(?:(?!<\\/script>)<[^<]*)*<\\/script>/gi, '')\n            .replace(/<style\\b[^<]*(?:(?!<\\/style>)<[^<]*)*<\\/style>/gi, '')\n            .replace(/<[^>]+>/g, ' ')\n            .replace(/\\s+/g, ' ')\n            .trim();\n\n        // Extract meta data\n        const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\\/title>/i);\n        const descMatch = htmlContent.match(/<meta[^>]*name=\"description\"[^>]*content=\"([^\"]*)\"[^>]*>/i);\n        \n        // Extract headings\n        const headings = {};\n        for (let i = 1; i <= 6; i++) {\n            const regex = new RegExp(`<h${i}[^>]*>([^<]+)<\\/h${i}>`, 'gi');\n            headings[`h${i}`] = [];\n            let match;\n            while ((match = regex.exec(htmlContent)) !== null) {\n                headings[`h${i}`].push(match[1].trim());\n            }\n        }\n\n        // Extract keywords\n        const words = textContent.toLowerCase()\n            .split(/\\W+/)\n            .filter(word => word.length > 3);\n        \n        const freq = {};\n        words.forEach(word => {\n            freq[word] = (freq[word] || 0) + 1;\n        });\n        \n        const keywords = Object.entries(freq)\n            .sort((a, b) => b[1] - a[1])\n            .slice(0, 10)\n            .map(entry => ({ word: entry[0], count: entry[1] }));\n\n        // Build result object\n        results.push({\n            json: {\n                textContent,\n                title: titleMatch ? titleMatch[1].trim() : '',\n                metaDescription: descMatch ? descMatch[1].trim() : '',\n                headings,\n                keywords,\n                length: textContent.length,\n                wordCount: textContent.split(/\\s+/).length\n            }\n        });\n    }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        -420
+      ],
+      "id": "344334bf-becc-4f24-89f7-28c591edf61a",
+      "name": "Clean HTML"
+    },
+    {
+      "parameters": {
+        "content": "## Get sitemap and scrap \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "height": 260,
+        "width": 1300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -940,
+        -500
+      ],
+      "typeVersion": 1,
+      "id": "b7091f4d-928b-4c58-aad8-932067b832b4",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Set URL",
+        "height": 240,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1100,
+        -500
+      ],
+      "typeVersion": 1,
+      "id": "1b327ba4-2e0a-4f6d-b829-1c3963dffa07",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "08fd54af-7f62-41cc-9c09-4d3f6c24808b",
+              "name": "pageUrl",
+              "value": "={{ $json.output.pageUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "305295c1-ddcd-4d73-9e98-b7cc5b70c201",
+              "name": "analysis_topics",
+              "value": "={{ $json.output.analysis.topics }}",
+              "type": "array"
+            },
+            {
+              "id": "5973e3f6-6437-4454-a7cf-04a4ef6c04da",
+              "name": "keywords",
+              "value": "={{ $json.output.analysis.keywords }}",
+              "type": "array"
+            },
+            {
+              "id": "50fa2357-03e5-4c29-8f36-10e9adbe4834",
+              "name": "summary",
+              "value": "={{ $json.output.analysis.summary }}",
+              "type": "string"
+            },
+            {
+              "id": "af19aa58-0440-4c9b-857c-c3e4366c8e8b",
+              "name": "sentiment",
+              "value": "={{ $json.output.analysis.sentiment }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        20
+      ],
+      "id": "f8c6397d-0956-4dd9-82fe-a2d01dc467e7",
+      "name": "set output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2cb450d7-d591-43ba-b505-a311e7efc4a2",
+              "name": "pageUrl",
+              "value": "={{ $json.pageUrl }} ",
+              "type": "string"
+            },
+            {
+              "id": "3da8fa0a-38c8-4055-ad81-a8f3d14b61bd",
+              "name": "keywords",
+              "value": "={{ $json.keywords.join().replaceAll(',', '\\n') }}",
+              "type": "string"
+            },
+            {
+              "id": "3264f1f3-e6ba-43ed-8366-080a6f1efa44",
+              "name": "summary",
+              "value": "={{ $json.summary }}",
+              "type": "string"
+            },
+            {
+              "id": "bb866a30-d673-4ca3-8caa-0a9040df72ec",
+              "name": "sentiment",
+              "value": "={{ $json.sentiment }}",
+              "type": "string"
+            },
+            {
+              "id": "9069aed0-d47f-47fb-97c3-a9a95ffde80c",
+              "name": "analysis_topics",
+              "value": "={{ $json.analysis_topics.topic }}",
+              "type": "string"
+            },
+            {
+              "id": "dcee514f-cd0a-4e22-a638-0635b3744994",
+              "name": "relevance",
+              "value": "={{ $json.analysis_topics.relevance }}",
+              "type": "number"
+            },
+            {
+              "id": "bfdc594d-b11c-46f5-be4e-c45c7fa72605",
+              "name": "subtopics",
+              "value": "={{ $json.analysis_topics.subtopics.join().replaceAll(',', '\\n') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        200,
+        20
+      ],
+      "id": "b54bd92c-7541-44ae-bcaf-f4e300a46a15",
+      "name": "set split fields"
+    },
+    {
+      "parameters": {
+        "content": "## Website analysis",
+        "height": 260,
+        "width": 1440,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "fece8bfe-6e96-48ff-a3b6-ad2f93fd26de",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7f40d60c-3c1e-4fd6-8836-437cb4514e93",
+              "name": "url",
+              "value": "={sitemap url}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1080,
+        -420
+      ],
+      "id": "b9fa1454-ef3f-4708-beca-b6688e7dc50e",
+      "name": "set Sitemap"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -920,
+        -420
+      ],
+      "id": "8999665a-60e1-4766-84b3-0a91c3954906",
+      "name": "get sitemap urls"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -420
+      ],
+      "id": "23cb2d61-3750-4577-b392-e9cd4dfa22f1",
+      "name": "Extract XML"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "urlset.url",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -420
+      ],
+      "id": "5f2ae4b5-098f-4979-9b48-54a31df62594",
+      "name": "Split Out Urls"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.loc }}",
+        "options": {
+          "batching": {
+            "batch": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        -420
+      ],
+      "id": "e06e04d2-831b-4669-bb05-4bb7b2b71e26",
+      "name": "Get Page content"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5594cbce-9cb0-444a-8f70-9cc86ac3b401",
+              "name": "textContent",
+              "value": "={{ $json.textContent }}",
+              "type": "string"
+            },
+            {
+              "id": "1014b0a4-99de-4361-9cec-5d2264de319e",
+              "name": "url",
+              "value": "={{ $('Split Out Urls').item.json.loc }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -420
+      ],
+      "id": "aaa70e56-f649-4f3c-94a9-88aa4c4389cd",
+      "name": "set url and page content"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "08fd54af-7f62-41cc-9c09-4d3f6c24808b",
+              "name": "pageUrl",
+              "value": "={{ $json.output.url }}",
+              "type": "string"
+            },
+            {
+              "id": "305295c1-ddcd-4d73-9e98-b7cc5b70c201",
+              "name": "analysis_topics",
+              "value": "={{ $json.output.topics }}",
+              "type": "array"
+            },
+            {
+              "id": "5973e3f6-6437-4454-a7cf-04a4ef6c04da",
+              "name": "keywords",
+              "value": "={{ $json.output.keywords }}",
+              "type": "array"
+            },
+            {
+              "id": "50fa2357-03e5-4c29-8f36-10e9adbe4834",
+              "name": "summary",
+              "value": "={{ $json.output.summary }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -780,
+        -180
+      ],
+      "id": "1bd6d930-36a7-49e5-9db7-6c4bb81a4682",
+      "name": "set analysis results"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3a801e67-0baf-413d-b77c-96beea0a491d",
+              "name": "output",
+              "value": "={{ $json.output }}",
+              "type": "object"
+            },
+            {
+              "id": "3941897d-4ad4-4b03-bc02-9010bf3ef1f3",
+              "name": "pageUrl",
+              "value": "={{ $json.output.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -780,
+        20
+      ],
+      "id": "b1de3a61-4608-44ef-89ea-438c3eab6ce0",
+      "name": "pass all results"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        340,
+        20
+      ],
+      "id": "843f514a-7980-440c-875a-69b3e82276e1",
+      "name": "Link to a storage system"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        -180
+      ],
+      "id": "118ff696-5c44-48e8-90f6-016e113ff778",
+      "name": "Conenct to a storage system"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        -420
+      ],
+      "id": "c2692866-a681-47dc-8cb0-ed5e9aae2137",
+      "name": "Set up desired trigger"
+    },
+    {
+      "parameters": {
+        "content": "\nThis section scraps the page content and cleans the HTML content for an easier format for the AI. \n\n",
+        "height": 220,
+        "width": 600,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -260,
+        -480
+      ],
+      "typeVersion": 1,
+      "id": "948add33-5de0-4f9e-93e3-42dfcf073663",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "We use AI to analyse the website content to provide the page level analysis of the page",
+        "width": 150,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1360,
+        -200
+      ],
+      "typeVersion": 1,
+      "id": "c197f322-89ed-47ba-9052-0b22b31774d4",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410",
+          "mode": "list",
+          "cachedResultName": "Scan Website for all keywords, intent etc Template",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Page Level Summaries",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        20,
+        -180
+      ],
+      "id": "2da1a1e6-b94c-4a3b-95f5-68a0af4348cb",
+      "name": "Page Level Summaries",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZAI2a6Qt80kX5a9s",
+          "name": "Google Sheets account✅ "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410",
+          "mode": "list",
+          "cachedResultName": "Scan Website for all keywords, intent etc Template",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 234573972,
+          "mode": "list",
+          "cachedResultName": "Website Level Summary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12Lcol-nL_ETIDI3-IOXh8i0TO4YnxZ---0QQFYQZ410/edit#gid=234573972"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": null,
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        540,
+        20
+      ],
+      "id": "cb86cd6f-760e-4564-8c40-bde33e34b058",
+      "name": "Website Level Summary",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZAI2a6Qt80kX5a9s",
+          "name": "Google Sheets account✅ "
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Topics per page",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Topics per page",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "whole website sentiments",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "whole website sentiments",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "whole website sentiments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser3",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "set split fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Topics per page": {
+      "main": [
+        [
+          {
+            "node": "pass all results",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "set analysis results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whole website sentiments": {
+      "main": [
+        [
+          {
+            "node": "set output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Conenct to a storage system",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean HTML": {
+      "main": [
+        [
+          {
+            "node": "set url and page content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set output": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set split fields": {
+      "main": [
+        [
+          {
+            "node": "Link to a storage system",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set Sitemap": {
+      "main": [
+        [
+          {
+            "node": "get sitemap urls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get sitemap urls": {
+      "main": [
+        [
+          {
+            "node": "Extract XML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract XML": {
+      "main": [
+        [
+          {
+            "node": "Split Out Urls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out Urls": {
+      "main": [
+        [
+          {
+            "node": "Get Page content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Page content": {
+      "main": [
+        [
+          {
+            "node": "Clean HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set url and page content": {
+      "main": [
+        [
+          {
+            "node": "Topics per page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set analysis results": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pass all results": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Link to a storage system": {
+      "main": [
+        [
+          {
+            "node": "Website Level Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conenct to a storage system": {
+      "main": [
+        [
+          {
+            "node": "Page Level Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set up desired trigger": {
+      "main": [
+        [
+          {
+            "node": "set Sitemap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db80165df40cb07c0377167c050b3f9ab0b0fb04f0e8cae0dc53f5a8527103ca"
+  }
+}
